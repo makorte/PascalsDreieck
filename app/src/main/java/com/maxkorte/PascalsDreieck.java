@@ -30,14 +30,26 @@ public class PascalsDreieck {
         }
     }
 
+    public int[] getZeile(int zeile){
+        return dreieck[zeile];
+    }
+
+    public String toString(){
+        String s = "";
+
+        for (int[] zeile:dreieck){
+            for (int num:zeile) s += num + " ";
+            s += "\n";
+        }
+
+        return s;
+    }
+
     public static void main(String[] args) {
-        PascalsDreieck d = new PascalsDreieck(6);
+        PascalsDreieck d = new PascalsDreieck(Integer.parseInt(args[0]));
         d.initDreieck();
         d.berechneDreieck();
 
-        for (int[] zeile:d.dreieck){
-            for (int num:zeile) System.out.print(num + " ");
-            System.out.println();
-        }
+        System.out.println(d);
     }
 }
