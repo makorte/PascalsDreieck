@@ -4,10 +4,12 @@
 package com.maxkorte;
 
 public class PascalsDreieck {
-    int zeilen;
-    int[][] dreieck;
+    protected int zeilen;
+    protected int[][] dreieck;
 
     public PascalsDreieck(int zeilen) {
+        if (zeilen < 2) throw new IllegalArgumentException("Das Dreieck sollte mindestens 2 Zeilen haben");
+
         this.zeilen = zeilen;
         initDreieck();
     }

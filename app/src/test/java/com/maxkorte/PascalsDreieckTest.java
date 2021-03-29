@@ -3,9 +3,31 @@
  */
 package com.maxkorte;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PascalsDreieckTest {
+    static int[][] dreieck;
 
+    @Test
+    public void testConstructor() {
+        assertThrows(IllegalArgumentException.class, () -> new PascalsDreieck(1));
+        assertThrows(IllegalArgumentException.class, () -> new PascalsDreieck(0));
+        assertThrows(IllegalArgumentException.class, () -> new PascalsDreieck(Integer.MIN_VALUE));
+    }
+
+    @BeforeClass
+    public static void beforeClass() throws Exception {
+        dreieck = new PascalsDreieck(5).dreieck;
+    }
+
+
+    @Test
+    public void testInitDreieck() {
+        assertEquals(5, dreieck.length);
+        assertEquals(4, dreieck[3].length);
+    }
+
+    // TODO: 29.03.21 complete tests 
 }
