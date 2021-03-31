@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PascalsDreieckTest {
-    static int[][] dreieck;
+    static PascalsDreieck pascalsDreieck;
 
     @Test
     public void testConstructor() {
@@ -19,15 +19,36 @@ public class PascalsDreieckTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        dreieck = new PascalsDreieck(5).dreieck;
+        pascalsDreieck = new PascalsDreieck(4);
     }
 
 
     @Test
     public void testInitDreieck() {
-        assertEquals(5, dreieck.length);
-        assertEquals(4, dreieck[3].length);
+        assertEquals(4, pascalsDreieck.dreieck.length);
+        assertEquals(3, pascalsDreieck.dreieck[2].length);
     }
 
-    // TODO: 29.03.21 complete tests 
+    @Test
+    public void testBerechneDreieck() {
+        pascalsDreieck.berechneDreieck();
+
+        int[] zeile1 = {1};
+        int[] zeile2 = {1, 1};
+        int[] zeile3 = {1, 2, 1};
+        int[] zeile4 = {1, 3, 3, 1};
+
+        assertArrayEquals(zeile1, pascalsDreieck.dreieck[0]);
+        assertArrayEquals(zeile2, pascalsDreieck.dreieck[1]);
+        assertArrayEquals(zeile3, pascalsDreieck.dreieck[2]);
+        assertArrayEquals(zeile4, pascalsDreieck.dreieck[3]);
+    }
+
+    @Test
+    public void testGetZeile() {
+        assertThrows(IllegalArgumentException.class, () -> pascalsDreieck.getZeile(0));
+        assertThrows(IllegalArgumentException.class, () -> pascalsDreieck.getZeile(5));
+        assertThrows(IllegalArgumentException.class, () -> pascalsDreieck.getZeile(Integer.MIN_VALUE));
+        assertThrows(IllegalArgumentException.class, () -> pascalsDreieck.getZeile(Integer.MAX_VALUE));
+    }
 }

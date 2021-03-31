@@ -33,7 +33,10 @@ public class PascalsDreieck {
     }
 
     public int[] getZeile(int zeile){
-        return dreieck[zeile];
+        if (zeile < 1 || zeile > dreieck.length) throw new IllegalArgumentException("zeile should be " +
+                "from 1 to length of dreieck");
+
+        return dreieck[zeile-1];
     }
 
     public String toString(){
@@ -48,7 +51,7 @@ public class PascalsDreieck {
     }
 
     public static void main(String[] args) {
-        PascalsDreieck d = new PascalsDreieck(Integer.parseInt(args[0]));
+        PascalsDreieck d = new PascalsDreieck(4);
         d.initDreieck();
         d.berechneDreieck();
 
